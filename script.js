@@ -28,7 +28,7 @@ function playRound(playerSelection, computerSelection) {
   let loseMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
   let drawMessage = "You draw! Both choices are equal";
 
-  // Determine who wins the roundS
+  // Determine who wins the round
   if (playerSelection === "Rock" && computerSelection === "Scissors") {
     return winMessage;
   } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
