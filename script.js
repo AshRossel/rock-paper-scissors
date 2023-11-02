@@ -45,32 +45,19 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
 
-  // Create tracking variables
-  let roundsPlayed = 0;
+  // Track scores
   let playerPoints = 0;
   let computerPoints = 0;
 
-  while (roundsPlayed < 5) {
+  // Get player and computer's selections
+  let computerSelection = getComputerChoice();
+  let result = playRound(playerSelection, computerSelection);
 
-    // Get player and computer's selections
-    let computerSelection = getComputerChoice();
-    let playerSelection = prompt("Rock, Paper or Scissors");
-    let result = playRound(playerSelection, computerSelection);
-
-    // Update score based on the result
-    if (result.startsWith("You win!")) {
-        playerPoints++;
-    } else if (result.startsWith("You lose!")) {
-        computerPoints++;
-    }
-    
-    // Update rounds played, excluding draws
-    if (!result.startsWith("You draw!")) {
-        roundsPlayed++;
-    }
-
-    // Display the result of the current round
-    console.log(result);
+  // Update score based on the result
+  if (result.startsWith("You win!")) {
+      playerPoints++;
+  } else if (result.startsWith("You lose!")) {
+      computerPoints++;
   }
 
   // Determine and display the game's overall winner
