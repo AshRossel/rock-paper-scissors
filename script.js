@@ -47,9 +47,6 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-  // Track scores
-  let playerPoints = 0;
-  let computerPoints = 0;
 
   const selectionButtons = document.querySelectorAll("button");
   selectionButtons.forEach((button) => {
@@ -75,5 +72,15 @@ function game() {
     console.log("You lose the game!");
   }
 }
+
+// Track scores
+let playerPoints = 0;
+let computerPoints = 0;
+
+// Get game information
+const roundResult = document.querySelector('#round-result');
+const playerScore = document.querySelector('#player-score');
+const computerScore = document.querySelector('#computer-score');
+const finalResult = document.querySelector('#final-result');
 
 game();
