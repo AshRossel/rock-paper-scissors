@@ -63,16 +63,17 @@ function game() {
         computerScore.textContent = ++computerPoints;
       }
 
+      // Display round result
       roundResult.textContent = result;
+
+      // Determine and display the game's overall winner
+      if (playerPoints == 5) {
+        finalResult.textContent = "You win the game!";
+      } else if (computerPoints == 5) {
+        finalResult.textContent = "You lose the game!";
+      }
     });
   });
-
-  // Determine and display the game's overall winner
-  if (playerPoints > computerPoints) {
-    console.log("You win the game!");
-  } else {
-    console.log("You lose the game!");
-  }
 }
 
 // Track scores
