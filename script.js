@@ -3,7 +3,7 @@ function getComputerChoice() {
   let randomChoice = Math.floor(Math.random() * 3);
 
   // Determine the computer's choice in the game
-  switch(randomChoice) {
+  switch (randomChoice) {
     case 0:
       return "Rock";
     case 1:
@@ -16,12 +16,16 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
   // Convert string selections to title case
   playerSelection = playerSelection.toLowerCase();
-  playerSelection = playerSelection.replace(playerSelection.charAt(0), 
-  playerSelection.charAt(0).toUpperCase());
+  playerSelection = playerSelection.replace(
+    playerSelection.charAt(0),
+    playerSelection.charAt(0).toUpperCase()
+  );
 
   computerSelection = computerSelection.toLowerCase();
-  computerSelection = computerSelection.replace(computerSelection.charAt(0), 
-  computerSelection.charAt(0).toUpperCase());
+  computerSelection = computerSelection.replace(
+    computerSelection.charAt(0),
+    computerSelection.charAt(0).toUpperCase()
+  );
 
   // Create the result round messages
   let winMessage = `You win! ${playerSelection} beats ${computerSelection}`;
@@ -42,27 +46,31 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-
 function game() {
-
   // Track scores
   let playerPoints = 0;
   let computerPoints = 0;
 
-  // Get player and computer's selections
-  let computerSelection = getComputerChoice();
-  let result = playRound(playerSelection, computerSelection);
+  const selectionButtons = document.querySelectorAll("button");
+  selectionButtons.forEach((button) => {
+    button.addEventListener("click", function (event) {
+      // Get player and computer's selections
+      let computerSelection = getComputerChoice();
+      let playerSelection = event.target.textContent;
+      let result = playRound(playerSelection, computerSelection);
 
-  // Update score based on the result
-  if (result.startsWith("You win!")) {
-      playerPoints++;
-  } else if (result.startsWith("You lose!")) {
-      computerPoints++;
-  }
+      // Update score based on the result
+      if (result.startsWith("You win!")) {
+        playerPoints++;
+      } else if (result.startsWith("You lose!")) {
+        computerPoints++;
+      }
+    });
+  });
 
   // Determine and display the game's overall winner
   if (playerPoints > computerPoints) {
-    console.log("You win the game!")
+    console.log("You win the game!");
   } else {
     console.log("You lose the game!");
   }
