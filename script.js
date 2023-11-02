@@ -62,6 +62,8 @@ function game() {
       } else if (result.startsWith("You lose!")) {
         computerScore.textContent = ++computerPoints;
       }
+
+      roundResult.textContent = result;
     });
   });
 
