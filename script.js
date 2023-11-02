@@ -58,9 +58,9 @@ function game() {
 
       // Update score based on the result
       if (result.startsWith("You win!")) {
-        playerPoints++;
+        playerScore.textContent = ++playerPoints;
       } else if (result.startsWith("You lose!")) {
-        computerPoints++;
+        computerScore.textContent = ++computerPoints;
       }
     });
   });
