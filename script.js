@@ -65,9 +65,18 @@ function buttonStart(buttonEvent) {
   // Determine and display the game's overall winner
   if (playerPoints == 5) {
     finalResult.textContent = "You win the game!";
+    endGame();
   } else if (computerPoints == 5) {
     finalResult.textContent = "You lose the game!";
+    endGame();
   }
+}
+
+function endGame() {
+  const selectionButtons = document.querySelectorAll("button");
+  selectionButtons.forEach((button) => {
+    button.removeEventListener("click", buttonStart);
+  });
 }
 
 function game() {
