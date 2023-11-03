@@ -46,33 +46,34 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function game() {
+function buttonStart(buttonEvent) {
+  // Get player and computer's selections
+  let computerSelection = getComputerChoice();
+  let playerSelection = buttonEvent.target.textContent;
+  let result = playRound(playerSelection, computerSelection);
 
+  // Update score based on the result
+  if (result.startsWith("You win!")) {
+    playerScore.textContent = ++playerPoints;
+  } else if (result.startsWith("You lose!")) {
+    computerScore.textContent = ++computerPoints;
+  }
+
+  // Display round result
+  roundResult.textContent = result;
+
+  // Determine and display the game's overall winner
+  if (playerPoints == 5) {
+    finalResult.textContent = "You win the game!";
+  } else if (computerPoints == 5) {
+    finalResult.textContent = "You lose the game!";
+  }
+}
+
+function game() {
   const selectionButtons = document.querySelectorAll("button");
   selectionButtons.forEach((button) => {
-    button.addEventListener("click", function (event) {
-      // Get player and computer's selections
-      let computerSelection = getComputerChoice();
-      let playerSelection = event.target.textContent;
-      let result = playRound(playerSelection, computerSelection);
-
-      // Update score based on the result
-      if (result.startsWith("You win!")) {
-        playerScore.textContent = ++playerPoints;
-      } else if (result.startsWith("You lose!")) {
-        computerScore.textContent = ++computerPoints;
-      }
-
-      // Display round result
-      roundResult.textContent = result;
-
-      // Determine and display the game's overall winner
-      if (playerPoints == 5) {
-        finalResult.textContent = "You win the game!";
-      } else if (computerPoints == 5) {
-        finalResult.textContent = "You lose the game!";
-      }
-    });
+    button.addEventListener("click", buttonStart);
   });
 }
 
