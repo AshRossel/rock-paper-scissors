@@ -1,36 +1,8 @@
-function getComputerChoice() {
-  // Get a random number between 0 and 2
-  let randomChoice = Math.floor(Math.random() * 3);
-
-  // Determine the computer's choice in the game
-  switch (randomChoice) {
-    case 0:
-      return "Rock";
-    case 1:
-      return "Paper";
-    case 2:
-      return "Scissors";
-  }
-}
-
 function playRound(playerSelection, computerSelection) {
-  // Convert string selections to title case
-  playerSelection = playerSelection.toLowerCase();
-  playerSelection = playerSelection.replace(
-    playerSelection.charAt(0),
-    playerSelection.charAt(0).toUpperCase()
-  );
-
-  computerSelection = computerSelection.toLowerCase();
-  computerSelection = computerSelection.replace(
-    computerSelection.charAt(0),
-    computerSelection.charAt(0).toUpperCase()
-  );
-
   // Create the result round messages
-  let winMessage = `You win! ${playerSelection} beats ${computerSelection}`;
-  let loseMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
-  let drawMessage = "You draw! Both choices are equal";
+  let winMessage = `You Win! ${playerSelection} beats ${computerSelection}`;
+  let loseMessage = `You Lose! ${computerSelection} beats ${playerSelection}`;
+  let drawMessage = "You Draw! Both choices are equal";
 
   // Determine who wins the round
   if (playerSelection === "Rock" && computerSelection === "Scissors") {
@@ -46,6 +18,21 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+function getComputerChoice() {
+  // Get a random number between 0 and 2
+  let randomChoice = Math.floor(Math.random() * 3);
+
+  // Determine the computer's choice in the game
+  switch (randomChoice) {
+    case 0:
+      return "Rock";
+    case 1:
+      return "Paper";
+    case 2:
+      return "Scissors";
+  }
+}
+
 function buttonStart(buttonEvent) {
   // Get player and computer's selections
   let computerSelection = getComputerChoice();
@@ -53,9 +40,9 @@ function buttonStart(buttonEvent) {
   let result = playRound(playerSelection, computerSelection);
 
   // Update score based on the result
-  if (result.startsWith("You win!")) {
+  if (result.startsWith("You Win!")) {
     playerScore.textContent = ++playerPoints;
-  } else if (result.startsWith("You lose!")) {
+  } else if (result.startsWith("You Lose!")) {
     computerScore.textContent = ++computerPoints;
   }
 
@@ -72,6 +59,7 @@ function buttonStart(buttonEvent) {
   }
 }
 
+// Block the buttons when the game is finished
 function endGame() {
   const selectionButtons = document.querySelectorAll("button");
   selectionButtons.forEach((button) => {
@@ -79,7 +67,8 @@ function endGame() {
   });
 }
 
-function game() {
+// Make the buttons able to start rounds
+function startGame() {
   const selectionButtons = document.querySelectorAll("button");
   selectionButtons.forEach((button) => {
     button.addEventListener("click", buttonStart);
@@ -91,9 +80,9 @@ let playerPoints = 0;
 let computerPoints = 0;
 
 // Get game information
-const roundResult = document.querySelector('#round-result');
-const playerScore = document.querySelector('#player-score');
-const computerScore = document.querySelector('#computer-score');
-const finalResult = document.querySelector('#final-result');
+const roundResult = document.querySelector("#round-result");
+const playerScore = document.querySelector("#player-score");
+const computerScore = document.querySelector("#computer-score");
+const finalResult = document.querySelector("#final-result");
 
-game();
+startGame();
